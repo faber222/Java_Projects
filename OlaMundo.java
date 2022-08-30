@@ -10,9 +10,9 @@ public class OlaMundo {
         int z = 0;
         z = x + y;
         System.out.println(z);
-        String s = "Faber Bernardo";
+        String s = "Faber Bernardo ";
         String u = "Junior";
 
-        System.out.println(s);
+        System.out.println(s + u);
     }
 }
