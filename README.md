@@ -24,8 +24,6 @@
   <a href="https://github.com/faber222" target="_blank">Author</a>
 </p>
 
-<br>
-
 ## :dart: About ##
 
 - This is a repo used for the POO class.
