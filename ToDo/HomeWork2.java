@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class HomeWork2 {
-    static int factorial(int n) {
+    static float factorial(float n) {
         if (n == 0)
             return 1;
         if (n < 0)
@@ -11,13 +11,13 @@ public class HomeWork2 {
     }
 
     public static void main(String[] args) {
-        Scanner keyboard = new Scanner(System.in);
+        Scanner Keyboard = new Scanner(System.in);
         System.out.print("Enter a fact number: ");
-        int number = keyboard.nextInt();
+        float Number = Keyboard.nextFloat();
 
-        int fact = 1;
-        fact = factorial(number);
-        System.out.println("The factorial of " + number + " is " + fact);
-        keyboard.close();
+        float Fact;
+        Fact = factorial(Number);
+        System.out.println("The factorial of " + Number + " is " + Fact);
+        Keyboard.close();
     }
 }

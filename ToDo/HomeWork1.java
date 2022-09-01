@@ -2,26 +2,26 @@ import java.util.Scanner;
 
 public class HomeWork1 {
     public static void main(String[] args) {
-        int age = 0;
-        Scanner keyboard = new Scanner(System.in);
+        int Age = 0;
+        Scanner Keyboard = new Scanner(System.in);
         System.out.print("Enter your name: ");
-        String name = keyboard.nextLine();
+        String Name = Keyboard.nextLine();
 
         System.out.print("Enter the year you were born: ");
-        int year = keyboard.nextInt();
+        int Year = Keyboard.nextInt();
 
         System.out.print("Enter the current year: ");
-        int currentYear = keyboard.nextInt();
+        int CurrentYear = Keyboard.nextInt();
 
-        keyboard.close();
+        Keyboard.close();
 
-        age = YearCalc(year, currentYear);
+        Age = YearCalc(Year, CurrentYear);
 
-        System.out.println(name + " has " + age);
+        System.out.println(Name + " has " + Age);
 
     }
 
-    public static int YearCalc(int year, int currentYear) {
-        return currentYear - year;
+    public static int YearCalc(int Year, int CurrentYear) {
+        return CurrentYear - Year;
     }
 }
