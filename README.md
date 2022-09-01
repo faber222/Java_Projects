@@ -49,7 +49,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/faber222/poo-aulas
+$ git clone https://github.com/POO29004-classroom/2022-02-listas-de-exercicios-faber222.git
 
 # Access
 $ cd ToDo
