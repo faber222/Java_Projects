@@ -19,10 +19,10 @@ public class SegundaQuestão {
             drawnNumber = true;
             mines[line][column] = -1;
         }
-        showBoard(board, mines, line, column);
+        showBoard(board, mines);
     }
 
-    public static void showBoard(char[][] board, int[][] mines, int line, int column) {
+    public static void showBoard(char[][] board, int[][] mines) {
 
         for (int i = 1; i < mines.length; i++) {
             for (int j = 1; j < mines.length; j++) {
