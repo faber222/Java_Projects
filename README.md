@@ -7,3 +7,4 @@
 ## Listas
 
 - [Lista 01](./lista-01/README.md)
+- [Lista 02](./lista-02/)
