@@ -1,5 +1,7 @@
 package engtelecom.poo;
 
+import java.time.temporal.IsoFields;
+
 import edu.princeton.cs.algs4.Draw;
 
 public class Relogio {
@@ -113,9 +115,9 @@ public class Relogio {
 
         if (this.fusoHorario > 0) {
             if (horas == 23) {
-                horas = 0 + this.fusoHorario;
+                horas = this.fusoHorario - 1;
             } else if (delta > 23) {
-                horas = 0 + delta;
+                horas = delta - 24;
             }
         }
         if (this.fusoHorario < 0) {

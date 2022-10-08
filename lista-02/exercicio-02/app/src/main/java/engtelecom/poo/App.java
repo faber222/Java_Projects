@@ -50,15 +50,15 @@ public class App {
 
     public void desenhaRelogio() {
         for (int j = 0; j < MAX; j++) {
-            this.vetorRelogio[j].desenha(desenho[j], 10, 20, 30);
+            this.vetorRelogio[j].desenha(desenho[j], 23, 20, 30);
         }
     }
 
     public static void main(String[] args){
-        Relogio primeiroRelogio = new Relogio(100, 100, -3, "Brasilia");
-        Relogio segundoRelogio = new Relogio(200, 200, -3, "Brasilia");
-        Relogio terceiroRelogio = new Relogio(300, 300, -3, "Brasilia");
-        Relogio quartoRelogio = new Relogio(300, 300, -3, "Brasilia");
+        Relogio primeiroRelogio = new Relogio(100, 100, 10, "Brasilia");
+        Relogio segundoRelogio = new Relogio(200, 200, 12, "Brasilia");
+        Relogio terceiroRelogio = new Relogio(300, 300, 5, "Brasilia");
+        Relogio quartoRelogio = new Relogio(300, 300, 3, "Brasilia");
         App painel = new App();
 
         painel.adicionarRelogio(primeiroRelogio);
