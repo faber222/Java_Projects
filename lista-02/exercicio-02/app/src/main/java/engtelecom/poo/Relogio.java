@@ -24,14 +24,6 @@ public class Relogio {
         this.nomeFuso = nomeFuso;
     }
 
-    public int getCoordenadaX() {
-        return coordenadaX;
-    }
-
-    public int getCoordenadaY() {
-        return coordenadaY;
-    }
-
     public String toString() {
         return "" + fusoHorario + ", " + nomeFuso + ", " + coordenadaX
                 + ", " + coordenadaY + "";
@@ -62,7 +54,7 @@ public class Relogio {
         return (checkHora(hora) && checkMinutoSegundo(minuto, segundo));
     }
 
-    public void desenho(Draw desenhaRelogio, int horas, int minutos, int segundos) {
+    public void desenha(Draw desenhaRelogio, int horas, int minutos, int segundos) {
         if (!verificaHoraTotal(horas, minutos, segundos)) {
             horas = 0;
             minutos = 0;
