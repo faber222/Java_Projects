@@ -1,7 +1,5 @@
 package engtelecom.poo;
 
-import java.time.temporal.IsoFields;
-
 import edu.princeton.cs.algs4.Draw;
 
 public class Relogio {
@@ -26,11 +24,6 @@ public class Relogio {
         this.nomeFuso = nomeFuso;
     }
 
-    public String toString() {
-        return "" + fusoHorario + ", " + nomeFuso + ", " + coordenadaX
-                + ", " + coordenadaY + "";
-    }
-
     public Relogio(int coordenadaX, int coordenadaY) {
         if (verificaCoordenada(coordenadaX, coordenadaY)) {
             this.coordenadaX = coordenadaX;
@@ -39,9 +32,8 @@ public class Relogio {
             this.coordenadaX = 300;
             this.coordenadaY = 300;
         }
-        this.fusoHorario = 0;
-        this.nomeFuso = "UTC";
-
+        this.fusoHorario = -3;
+        this.nomeFuso = "Brasilia";
     }
 
     public boolean verificaCoordenada(int coordenadaX, int coordenadaY) {
@@ -96,7 +88,6 @@ public class Relogio {
         desenhaRelogio.setPenRadius(0.0005);
         desenhaRelogio.line(vetX, vetY, vetX + r2 * 2 * Math.sin(s), vetY + r2 * 2 * Math.cos(s));
 
-        // String horario = String.format("%02d:%02d:%02d", horas, minutos, segundos);
         desenhaRelogio.text(vetX + 10, vetY + 10, this.nomeFuso);
     }
 
