@@ -43,25 +43,6 @@ public class RoboTest {
     }
 
     @Test
-    public void verificaCoordenadaAnterior() {
-        Robo teste5 = new Robo("C3PO", 200, 10, 10, "Norte", 100, 10);
-        teste5.carregaPlanos("MMMDMMM");
-        teste5.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=10", teste5.coordenadaAnterior());
-        teste5.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=20", teste5.coordenadaAnterior());
-        teste5.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=30", teste5.coordenadaAnterior());
-        teste5.executaPlano();
-        teste5.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=40", teste5.coordenadaAnterior());
-        teste5.executaPlano();
-        assertEquals("coordenadaX=20, coordenadaY=40", teste5.coordenadaAnterior());
-        teste5.executaPlano();
-        assertEquals("coordenadaX=30, coordenadaY=40", teste5.coordenadaAnterior());
-    }
-
-    @Test
     public void girarRobo() {
         Robo teste6 = new Robo("C3PO", 200, 10, 10, "Norte", 100, 10);
         assertEquals("Oeste", teste6.girarRobo("E"));
@@ -97,25 +78,6 @@ public class RoboTest {
         assertEquals(true, teste10.executaPlano());
         assertEquals(true, teste10.executaPlano());
         assertEquals(false, teste10.executaPlano());
-
-    }
-
-    @Test
-    public void getCoordenadaOrientacao() {
-        Robo teste11 = new Robo("C3PO", 200, 10, 10, "Norte", 100, 10);
-        teste11.carregaPlanos("MMMDDE");
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=20, Norte", teste11.getCoordenadaOrientacao());
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=30, Norte", teste11.getCoordenadaOrientacao());
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=40, Norte", teste11.getCoordenadaOrientacao());
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=40, Leste", teste11.getCoordenadaOrientacao());
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=40, Sul", teste11.getCoordenadaOrientacao());
-        teste11.executaPlano();
-        assertEquals("coordenadaX=10, coordenadaY=40, Leste", teste11.getCoordenadaOrientacao());
     }
     
     @Test 

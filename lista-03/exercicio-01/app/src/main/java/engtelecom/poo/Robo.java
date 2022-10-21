@@ -65,10 +65,9 @@ public class Robo {
             this.coordenadaY = coordenadaY;
         } else {
             this.orientacao = "Norte";
-            Random r = new Random(this.tamanhoArea++);
-            Random r2 = new Random(this.tamanhoArea++);
-            this.coordenadaX = r.nextInt();
-            this.coordenadaY = r2.nextInt();
+            Random r = new Random();
+            this.coordenadaX = r.nextInt(this.tamanhoArea + 1);
+            this.coordenadaY = r.nextInt(this.tamanhoArea + 1);
         }
 
         if (verificaTurnos(unidadesPorTurno)) {
@@ -76,6 +75,8 @@ public class Robo {
         } else {
             this.unidadesPorTurno = MAX;
         }
+        this.coordenadaXAnterior = this.coordenadaX;
+        this.coordenadaYAnterior = this.coordenadaY;
     }
 
     /**
@@ -103,6 +104,51 @@ public class Robo {
      */
     public int getMovimentos() {
         return movimentos;
+    }
+
+    /**
+     * Retorna a orientação atual do robo
+     * 
+     * @return String que representa a orientação
+     */
+    public String getOrientacao() {
+        return orientacao;
+    }
+
+    /**
+     * Retorna a coordenada x do robo
+     * 
+     * @return Integer que representa a posição x do robo
+     */
+    public int getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    /**
+     * Retorna a coordenada y do robo
+     * 
+     * @return Integer que representa a posição y do robo
+     */
+    public int getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    /**
+     * Retorna a coordenada x anterior do robo
+     * 
+     * @return Integer que representa a posição x anterior do robo
+     */
+    public int getCoordenadaXAnterior() {
+        return coordenadaXAnterior;
+    }
+
+    /**
+     * Retorna a coordenada y anterior do robo
+     * 
+     * @return Integer que representa a posição y anterior do robo
+     */
+    public int getCoordenadaYAnterior() {
+        return coordenadaYAnterior;
     }
 
     /**
@@ -162,33 +208,6 @@ public class Robo {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Retorna qual as coordenadas do robo e sua orientação no mapa.
-     * Podendo ser Norte, Sul, Leste ou Oeste
-     * 
-     * @return String contendo (x,y,orientacao)
-     */
-    public String getCoordenadaOrientacao() {
-        return "coordenadaX=" + coordenadaX + ", coordenadaY=" + coordenadaY + ", " + orientacao + "";
-    }
-
-    /**
-     * Retorna qual era a posicação anterior do robo no mapa.
-     * Caso ele nao tenha se movimentado, retorna a posição atual
-     * 
-     * @return String contendo (x,y)
-     */
-    public String coordenadaAnterior() {
-        if (this.coordenadaX != this.coordenadaXAnterior && this.coordenadaY != this.coordenadaYAnterior) {
-            return "coordenadaX=" + coordenadaXAnterior + ", coordenadaY=" + coordenadaYAnterior + "";
-        } else if (this.coordenadaX != this.coordenadaXAnterior && this.coordenadaY == this.coordenadaYAnterior) {
-            return "coordenadaX=" + coordenadaXAnterior + ", coordenadaY=" + this.coordenadaY + "";
-        } else if (this.coordenadaX == this.coordenadaXAnterior && this.coordenadaY != this.coordenadaYAnterior) {
-            return "coordenadaX=" + coordenadaX + ", coordenadaY=" + this.coordenadaYAnterior + "";
-        }
-        return "coordenadaX=" + coordenadaX + ", coordenadaY=" + this.coordenadaY + "";
     }
 
     /**
