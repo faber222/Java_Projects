@@ -1,19 +1,26 @@
 package engtelecom.poo;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Robo {
-    private static final int MAX = 100;
-    private static final int MIN = 0;
-    
-    private String id; 
-    private String orientacao; 
-    private int tamanhoArea; 
-    private int coordenadaX;
-    private int coordenadaY; 
-    private int movimentos; 
-    private int unidadesPorTurno;
+    private static final int MAX = 100; // valor maximo de movimentos
+    private static final int MIN = 0; // valor minimo de movimentos
+    private static final int MIN_FIXO = 0; //
 
-    private String[] plano; 
+    private String id; // hash de identificação do robo
+    private String orientacao; // Norte, Sul, Leste, Oeste
+    private int tamanhoArea; // tamanho em m² do local
+    private int coordenadaX; // coordenada inicial em x
+    private int coordenadaY; // coordenada inicial em y
+    private int movimentos; // numero de movimentos restantes
+    private int unidadesPorTurno; // maximo de movimentos por turno
 
+    private ArrayList<String> plano; // plano de exploração do robo
+    private int coordenadaXAnterior; // coordenada anterior em x
+    private int coordenadaYAnterior; // coordenada anterior em y
+
+   
     public Robo(String id, int tamanhoArea, int coordenadaX, int coordenadaY, String orientacao,
             int movimentos, int unidadesPorTurno) {
         this.id = id;
@@ -33,8 +40,8 @@ public class Robo {
         return movimentos;
     }
 
-    public String[] getPlano() {
-        return plano;
+    public String planoRestante() {
+        return "";
     }
 
     public boolean verificaOrientacao(String orientacao) {
@@ -49,16 +56,15 @@ public class Robo {
         return true;
     }
 
-    @Override
-    public String toString() {
+    public String getCoordenadaOrientacao() {
         return "coordenadaX=" + coordenadaX + ", coordenadaY=" + coordenadaY + ", " + orientacao + "";
     }
 
-    public String getCoordenadaAnterior() {
+    public String coordenadaAnterior() {
         return "";
     }
 
-    public String girarRobo(char comando) {
+    public String girarRobo(String comando) {
         return "";
     }
 
