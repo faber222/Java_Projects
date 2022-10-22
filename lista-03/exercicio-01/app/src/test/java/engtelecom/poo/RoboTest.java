@@ -78,14 +78,8 @@ public class RoboTest {
         assertEquals(true, teste10.executaPlano());
         assertEquals(true, teste10.executaPlano());
         assertEquals(false, teste10.executaPlano());
+        assertEquals(false, teste10.executaPlano());
+        assertEquals(false, teste10.executaPlano());
     }
     
-    @Test 
-    public void getPlano() {
-        Robo teste12 = new Robo("C3PO", 200, 10, 10, "Norte", 100, 10);
-        teste12.carregaPlanos("MMDDE");
-        teste12.executaPlano();
-        teste12.executaPlano();
-        assertEquals("DDE", teste12.planoRestante());
-    }
 }
