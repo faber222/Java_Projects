@@ -1,6 +1,5 @@
 package engtelecom.poo;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -19,7 +18,7 @@ public class Robo {
     private int movimentos; // numero de movimentos restantes
     private int unidadesPorTurno; // maximo de movimentos por turno
 
-    private ArrayList<String> plano; // plano de exploração do robo
+    private String plano; // plano de exploração do robo
     private int coordenadaXAnterior; // coordenada anterior em x
     private int coordenadaYAnterior; // coordenada anterior em y
 
@@ -157,11 +156,7 @@ public class Robo {
      * @return String contendo todos os dados presentes no plano de exploração
      */
     public String planoRestante() {
-        String planosRestantes = "";
-        for (String comandos : this.plano) {
-            planosRestantes += comandos;
-        }
-        return planosRestantes;
+        return plano;
     }
 
     /**
@@ -326,11 +321,8 @@ public class Robo {
      */
     public boolean carregaPlanos(String planoRobo) {
         String vetorLocal[] = planoRobo.split("");
-        ArrayList<String> testeVetor = new ArrayList<>();
-        for (String string : vetorLocal) {
-            testeVetor.add(string);
-        }
-        for (String letras : testeVetor) {
+    
+        for (String letras : vetorLocal) {
             switch (letras) {
                 case "M":
                     break;
@@ -342,7 +334,7 @@ public class Robo {
                     return false;
             }
         }
-        this.plano = testeVetor;
+        this.plano = planoRobo;
         return true;
     }
 
@@ -354,21 +346,21 @@ public class Robo {
      *         Retorna false caso não haja mais movimentos disponiveis
      */
     public boolean executaPlano() {
-        if (this.plano.size() == MIN_FIXO) {
+        if (this.plano.isEmpty()) {
             return false;
         }
-        String letra = this.plano.get(MIN_FIXO);
-        this.plano.remove(MIN_FIXO);
+        char letra = this.plano.charAt(MIN_FIXO);
+        this.plano = this.plano.substring(1);
 
         switch (letra) {
-            case "M":
+            case 'M':
                 moverRobo();
                 break;
-            case "D":
-                girarRobo(letra);
+            case 'D':
+                girarRobo("D");
                 break;
-            case "E":
-                girarRobo(letra);
+            case 'E':
+                girarRobo("E");
                 break;
         }
         return true;
