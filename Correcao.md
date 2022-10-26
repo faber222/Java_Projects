@@ -17,3 +17,8 @@
 - Nota: 8
 
 
+
+# Lista 03
+
+- Tudo ok
+- Nota: 10
