@@ -1,36 +1,41 @@
 package engtelecom.poo;
 
 public class VirtualMachine {
+
     private String nome;
     private int sizeMem;
     private int sizeStorage;
     private boolean power;
 
-    public VirtualMachine() {
+    public VirtualMachine(String n, int m, int s) {
+        this.nome = n;
+        this.sizeMem = m;
+        this.sizeStorage = s;
+        this.power = false;
     }
 
-    /**
-     * @param n
-     * @param m
-     * @param s
-     */
-    public void VirtualMachine(String n, int m, int s) {
-
+    public boolean setPowerOn() {
+        return setPower(true);
     }
 
-    /**
-     * @return
-     */
-    public boolean turnOn() {
-
-        return false;
+    public boolean setPowerOff() {
+        return setPower(false);
     }
 
-    /**
-     * @return
-     */
-    public boolean turnOff() {
-        return false;
+    private boolean setPower(boolean power) {
+        return this.power = power;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getSizeMem() {
+        return sizeMem;
+    }
+    
+    public int getSizeStorage() {
+        return sizeStorage;
     }
 
 }
