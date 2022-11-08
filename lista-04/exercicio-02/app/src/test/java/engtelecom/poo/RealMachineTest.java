@@ -20,6 +20,12 @@ public class RealMachineTest {
         assertTrue(pc.createVm("VM faber", 100, 5000));
 
         assertFalse(pc.createVm("VM faber", 100, 5000));
+
+        pc.removeVm(0);
+        pc.removeVm(0);
+        pc.removeVm(0);
+
+        assertTrue(pc.createVm("VM faber", 700, 5000));
     }
 
     @Test
