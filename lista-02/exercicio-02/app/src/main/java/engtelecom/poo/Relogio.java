@@ -60,8 +60,6 @@ public class Relogio {
         double vetX = 0.5 + this.coordenadaX;
         double vetY = 0.5 + this.coordenadaY;
 
-        desenhaRelogio.clear(Draw.LIGHT_GRAY);
-
         desenhaRelogio.setPenColor(Draw.WHITE);
         desenhaRelogio.filledCircle(vetX, vetY, 100.5);
         desenhaRelogio.setPenColor(Draw.BLACK);

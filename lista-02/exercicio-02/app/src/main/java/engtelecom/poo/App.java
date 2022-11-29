@@ -8,15 +8,14 @@ public class App {
 
     // atributo desenho como vetor
     // usado para desenhar mais de um relogio
-    private Draw[] desenho = new Draw[MAX];
+    private Draw desenho;
 
     // vetor relogio que armazena os relogios a serem instanciados
     private Relogio[] vetorRelogio = new Relogio[MAX];
 
     public App() {
-        for (int i = 0; i < MAX; i++) {
             // a chamada de new Draw cria um quadro em branco
-            this.desenho[i] = new Draw();
+            this.desenho = new Draw();
             /*
              * a chamada do setCanvasSize, acaba por definir um novo tamanho pro quadro
              * branco, mas acaba, se executado muito rapido, por bugar e criar dois
@@ -31,10 +30,10 @@ public class App {
                 e.printStackTrace();
             } // 1 segundo
 
-            this.desenho[i].setCanvasSize(600, 600);
-            this.desenho[i].setXscale(0, 600);
-            this.desenho[i].setYscale(0, 600);
-        }
+            this.desenho.setCanvasSize(600, 600);
+            this.desenho.setXscale(0, 600);
+            this.desenho.setYscale(0, 600);
+        
     }
 
     public boolean adicionarRelogio(Relogio consulta) {
@@ -50,7 +49,7 @@ public class App {
 
     public void desenhaRelogio() {
         for (int j = 0; j < MAX; j++) {
-            this.vetorRelogio[j].desenha(this.desenho[j], 23, 20, 30);
+            this.vetorRelogio[j].desenha(this.desenho, 23, 20, 30);
         }
     }
 
