@@ -1,20 +1,18 @@
 package engtelecom.poo;
 
-import java.util.ArrayList;
-
 public class Ferrari extends Veiculo implements Conversivel {
     private boolean farolLigado;
-    private ArrayList<String> eventos;
+    private boolean capotaAberta;
 
-    public Ferrari(String nome, int maxVelocidade, int velocidadeAtual) {
-        super(nome, maxVelocidade, velocidadeAtual);
+    public Ferrari(String nome) {
+        super(nome, 200, 0);
         this.farolLigado = false;
+        this.capotaAberta = false;
     }
 
     public boolean ligarFarolNeblina() {
-        if (!isFarol()) {
-            this.farolLigado = true;
-            eventos.add("Ligando farol");
+        if (!isFarolLigado()) {
+            setFarolLigado(true);
             return true;
         }
         return false;
@@ -24,7 +22,6 @@ public class Ferrari extends Veiculo implements Conversivel {
     public void frear(int i) {
         if (i < 200 && i > 0) {
             super.velocidadeAtual -= i;
-            eventos.add("freiando");
             if (getVelocidadeAtual() < 0) {
                 super.velocidadeAtual = 0;
                 setStopped(true);
@@ -36,7 +33,6 @@ public class Ferrari extends Veiculo implements Conversivel {
     public void acelerar(int i) {
         if (i < 200 && i > 0) {
             super.velocidadeAtual += i;
-            eventos.add("acelerando");
             setStopped(false);
             if (getVelocidadeAtual() > 200) {
                 super.velocidadeAtual = 200;
@@ -46,8 +42,8 @@ public class Ferrari extends Veiculo implements Conversivel {
 
     @Override
     public boolean abrirCapota() {
-        if (getVelocidadeAtual() <= 20) {
-            eventos.add("Abrindo capota");
+        if (getVelocidadeAtual() <= 20 && !isCapotaAberta()) {
+            setCapotaAberta(true);
             return true;
         }
         return false;
@@ -55,8 +51,8 @@ public class Ferrari extends Veiculo implements Conversivel {
 
     @Override
     public boolean fecharCapota() {
-        if (getVelocidadeAtual() <= 20) {
-            eventos.add("Fechando capota");
+        if (getVelocidadeAtual() <= 20 && isCapotaAberta()) {
+            setCapotaAberta(false);
             return true;
         }
         return false;
@@ -72,10 +68,6 @@ public class Ferrari extends Veiculo implements Conversivel {
         super.velocidadeAtual = velocidadeAtual;
     }
 
-    public boolean isFarol() {
-        return this.farolLigado;
-    }
-
     @Override
     public String getNome() {
         return super.nome;
@@ -89,6 +81,22 @@ public class Ferrari extends Veiculo implements Conversivel {
     @Override
     public void setStopped(boolean stopped) {
         super.stopped = stopped;
+    }
+
+    private boolean isFarolLigado() {
+        return this.farolLigado;
+    }
+
+    private void setFarolLigado(boolean farolLigado) {
+        this.farolLigado = farolLigado;
+    }
+
+    private boolean isCapotaAberta() {
+        return this.capotaAberta;
+    }
+
+    private void setCapotaAberta(boolean capotaAberta) {
+        this.capotaAberta = capotaAberta;
     }
 
 }

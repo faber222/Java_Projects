@@ -1,36 +1,31 @@
 package engtelecom.poo;
 
-import java.util.ArrayList;
-
-public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, Conversivel {
-
-    private ArrayList<String> eventos;
+public class Panther extends VeiculoTracionado implements VeiculoAnfibio, TracaoIntegral, Conversivel {
     private int temperatura;
     private boolean rodasRecolhidas;
+    private boolean capotaAberta;
+    private boolean lastroCheio;
 
-    public Panther(String nome, int maxVelocidade, int velocidadeAtual) {
-        super(nome, maxVelocidade, velocidadeAtual);
+    public Panther(String nome) {
+        super(nome, 140, 0, false);
         this.temperatura = 25;
         this.rodasRecolhidas = false;
+        this.capotaAberta = false;
+        this.lastroCheio = true;
     }
 
     public void setTempRefri(int t) {
-        setTempRefri(t);
-    }
-
-    public void setTemperatura(int temperatura) {
-        this.temperatura = temperatura;
+        setTemperatura(t);
     }
 
     public int getTemperatura() {
-        return this.temperatura;
+        return temperatura;
     }
 
     @Override
     public void frear(int i) {
         if (i <= 140 && i > 0 && isMooving()) {
             super.velocidadeAtual -= i;
-            this.eventos.add("freiando");
             if (getVelocidadeAtual() < 0) {
                 super.velocidadeAtual = 0;
             }
@@ -40,9 +35,7 @@ public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, 
     @Override
     public void acelerar(int i) {
         if (i <= 140 && i > 0) {
-
             super.velocidadeAtual += i;
-            this.eventos.add("acelerando");
             if (getVelocidadeAtual() > 140) {
                 super.velocidadeAtual = 140;
             }
@@ -53,7 +46,6 @@ public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, 
     public boolean recolherRodas() {
         if (!isRodasRecolhidas() && !isMooving()) {
             esvaziarLastro();
-            this.eventos.add("recolhendo rodas");
             setRodasRecolhidas(true);
             return true;
         }
@@ -63,7 +55,6 @@ public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, 
     @Override
     public boolean abrirRodas() {
         if (isRodasRecolhidas() && !isMooving()) {
-            this.eventos.add("abrindo rodas");
             setRodasRecolhidas(false);
             return true;
         }
@@ -71,39 +62,71 @@ public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, 
     }
 
     @Override
-    public void esvaziarLastro() {
-        this.eventos.add("esvaziando lastro");
+    public boolean esvaziarLastro() {
+        if (!isMooving() && isLastroCheio()) {
+            setLastroCheio(false);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean ativarDesativarTracao() {
+        if (!isMooving()) {
+            if (isTracaoAtiva()) {
+                setTracaoAtiva(false);
+            } else {
+                setTracaoAtiva(true);
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean abrirCapota() {
-        if (!isMooving()) {
-            this.eventos.add("abrindo capota");
-            return false;
+        if (!isMooving() && !isCapotaAberta()) {
+            setCapotaAberta(true);
+            return true;
         }
         return false;
     }
 
     @Override
     public boolean fecharCapota() {
-        if (!isMooving()) {
-            this.eventos.add("fechando capota");
+        if (!isMooving() && isCapotaAberta()) {
+            setCapotaAberta(false);
             return true;
         }
         return false;
     }
 
-    public void setRodasRecolhidas(boolean rodasRecolhidas) {
+    private void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    private void setRodasRecolhidas(boolean rodasRecolhidas) {
         this.rodasRecolhidas = rodasRecolhidas;
     }
 
-    public boolean isRodasRecolhidas() {
+    private boolean isRodasRecolhidas() {
         return this.rodasRecolhidas;
+    }
+
+    private boolean isCapotaAberta() {
+        return this.capotaAberta;
+    }
+
+    private void setCapotaAberta(boolean capotaAberta) {
+        this.capotaAberta = capotaAberta;
+    }
+
+    private boolean isLastroCheio() {
+        return this.lastroCheio;
+    }
+
+    private void setLastroCheio(boolean lastroCheio) {
+        this.lastroCheio = lastroCheio;
     }
 
     @Override
@@ -129,6 +152,16 @@ public class Panther extends Veiculo implements VeiculoAnfibio, TracaoIntegral, 
     @Override
     public void setStopped(boolean stopped) {
         super.stopped = stopped;
+    }
+
+    @Override
+    public boolean isTracaoAtiva() {
+        return super.tracaoAtiva;
+    }
+
+    @Override
+    public void setTracaoAtiva(boolean tracaoAtiva) {
+        super.tracaoAtiva = tracaoAtiva;
     }
 
 }

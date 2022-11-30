@@ -1,32 +1,17 @@
 package engtelecom.poo;
 
-import java.util.ArrayList;
+public class Pampa extends VeiculoTracionado implements TracaoIntegral {
 
-public class Pampa extends Veiculo implements TracaoIntegral {
-
-    private ArrayList<String> eventos;
     private boolean cacambaAberta;
-    private boolean tracaoAtivada;
 
-    /**
-     * @param nome
-     * @param maxVelocidade
-     * @param stopped
-     * @param velocidadeAtual
-     */
-    public Pampa(String nome, int maxVelocidade, int velocidadeAtual) {
-        super(nome, velocidadeAtual, velocidadeAtual);
+    public Pampa(String nome) {
+        super(nome, 140, 0, false);
         this.cacambaAberta = false;
-        this.tracaoAtivada = false;
     }
 
-    /**
-     * @return
-     */
     public boolean abrirCacamba() {
-        if (isCacambaAberta() && !isMooving()) {
-            this.eventos.add("abrindo cacamba");
-            this.cacambaAberta = true;
+        if (!isCacambaAberta() && !isMooving()) {
+            setCacambaAberta(true);
             return true;
         }
         return false;
@@ -36,7 +21,6 @@ public class Pampa extends Veiculo implements TracaoIntegral {
     public void frear(int i) {
         if (i < 140 && i > 0) {
             super.velocidadeAtual -= i;
-            this.eventos.add("freiando");
             if (getVelocidadeAtual() < 0) {
                 super.velocidadeAtual = 0;
                 setStopped(true);
@@ -48,7 +32,6 @@ public class Pampa extends Veiculo implements TracaoIntegral {
     public void acelerar(int i) {
         if (i < 140 && i > 0) {
             super.velocidadeAtual += i;
-            this.eventos.add("acelerando");
             setStopped(false);
             if (getVelocidadeAtual() > 140) {
                 super.velocidadeAtual = 140;
@@ -59,7 +42,12 @@ public class Pampa extends Veiculo implements TracaoIntegral {
     @Override
     public boolean ativarDesativarTracao() {
         if (!isMooving()) {
-            this.eventos.add("ativando tracao");
+            if (isTracaoAtiva()) {
+                setTracaoAtiva(false);
+            } else {
+                setTracaoAtiva(true);
+            }
+            return true;
         }
         return false;
     }
@@ -84,13 +72,27 @@ public class Pampa extends Veiculo implements TracaoIntegral {
         return super.velocidadeAtual;
     }
 
-    public boolean isCacambaAberta() {
+    private boolean isCacambaAberta() {
         return this.cacambaAberta;
     }
 
     @Override
     public void setStopped(boolean stopped) {
         super.stopped = stopped;
+    }
+
+    @Override
+    public boolean isTracaoAtiva() {
+        return super.tracaoAtiva;
+    }
+
+    @Override
+    public void setTracaoAtiva(boolean tracaoAtiva) {
+        super.tracaoAtiva = tracaoAtiva;
+    }
+
+    private void setCacambaAberta(boolean cacambaAberta) {
+        this.cacambaAberta = cacambaAberta;
     }
 
 }
