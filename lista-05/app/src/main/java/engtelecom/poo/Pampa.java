@@ -10,7 +10,7 @@ public class Pampa extends VeiculoTracionado implements TracaoIntegral {
     }
 
     public boolean abrirCacamba() {
-        if (!isCacambaAberta() && !isMooving()) {
+        if (!isCacambaAberta() && isStopped()) {
             setCacambaAberta(true);
             return true;
         }
@@ -18,30 +18,34 @@ public class Pampa extends VeiculoTracionado implements TracaoIntegral {
     }
 
     @Override
-    public void frear(int i) {
-        if (i < 140 && i > 0) {
+    public boolean frear(int i) {
+        if (i <= 140 && i > 0) {
             super.velocidadeAtual -= i;
-            if (getVelocidadeAtual() < 0) {
+            if (getVelocidadeAtual() <= 0) {
                 super.velocidadeAtual = 0;
                 setStopped(true);
             }
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void acelerar(int i) {
-        if (i < 140 && i > 0) {
+    public boolean acelerar(int i) {
+        if (i <= 140 && i > 0) {
             super.velocidadeAtual += i;
             setStopped(false);
             if (getVelocidadeAtual() > 140) {
                 super.velocidadeAtual = 140;
             }
+            return true;
         }
+        return false;
     }
 
     @Override
     public boolean ativarDesativarTracao() {
-        if (!isMooving()) {
+        if (isStopped()) {
             if (isTracaoAtiva()) {
                 setTracaoAtiva(false);
             } else {
@@ -53,7 +57,7 @@ public class Pampa extends VeiculoTracionado implements TracaoIntegral {
     }
 
     @Override
-    public boolean isMooving() {
+    public boolean isStopped() {
         return super.stopped;
     }
 

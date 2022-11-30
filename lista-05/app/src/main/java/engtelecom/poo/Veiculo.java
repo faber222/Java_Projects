@@ -10,7 +10,7 @@ public abstract class Veiculo {
     public Veiculo(String nome, int maxVelocidade, int velocidadeAtual) {
         this.nome = nome;
         this.maxVelocidade = maxVelocidade;
-        this.stopped = false;
+        this.stopped = true;
         this.velocidadeAtual = velocidadeAtual;
     }
 

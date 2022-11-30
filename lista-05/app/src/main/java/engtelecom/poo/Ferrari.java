@@ -19,25 +19,29 @@ public class Ferrari extends Veiculo implements Conversivel {
     }
 
     @Override
-    public void frear(int i) {
+    public boolean frear(int i) {
         if (i < 200 && i > 0) {
             super.velocidadeAtual -= i;
             if (getVelocidadeAtual() < 0) {
                 super.velocidadeAtual = 0;
                 setStopped(true);
             }
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void acelerar(int i) {
+    public boolean acelerar(int i) {
         if (i < 200 && i > 0) {
             super.velocidadeAtual += i;
             setStopped(false);
             if (getVelocidadeAtual() > 200) {
                 super.velocidadeAtual = 200;
             }
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -59,7 +63,7 @@ public class Ferrari extends Veiculo implements Conversivel {
     }
 
     @Override
-    public boolean isMooving() {
+    public boolean isStopped() {
         return super.stopped;
     }
 

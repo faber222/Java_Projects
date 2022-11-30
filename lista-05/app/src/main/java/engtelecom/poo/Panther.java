@@ -23,28 +23,34 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
     }
 
     @Override
-    public void frear(int i) {
-        if (i <= 140 && i > 0 && isMooving()) {
+    public boolean frear(int i) {
+        if (i <= 140 && i > 0) {
             super.velocidadeAtual -= i;
-            if (getVelocidadeAtual() < 0) {
+            if (getVelocidadeAtual() <= 0) {
                 super.velocidadeAtual = 0;
+                setStopped(true);
             }
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void acelerar(int i) {
+    public boolean acelerar(int i) {
         if (i <= 140 && i > 0) {
             super.velocidadeAtual += i;
+            setStopped(false);
             if (getVelocidadeAtual() > 140) {
                 super.velocidadeAtual = 140;
             }
+            return true;
         }
+        return false;
     }
 
     @Override
     public boolean recolherRodas() {
-        if (!isRodasRecolhidas() && !isMooving()) {
+        if (!isRodasRecolhidas() && !isStopped()) {
             esvaziarLastro();
             setRodasRecolhidas(true);
             return true;
@@ -54,7 +60,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean abrirRodas() {
-        if (isRodasRecolhidas() && !isMooving()) {
+        if (isRodasRecolhidas() && !isStopped()) {
             setRodasRecolhidas(false);
             return true;
         }
@@ -63,7 +69,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean esvaziarLastro() {
-        if (!isMooving() && isLastroCheio()) {
+        if (!isStopped() && isLastroCheio()) {
             setLastroCheio(false);
             return true;
         }
@@ -72,7 +78,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean ativarDesativarTracao() {
-        if (!isMooving()) {
+        if (!isStopped()) {
             if (isTracaoAtiva()) {
                 setTracaoAtiva(false);
             } else {
@@ -85,7 +91,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean abrirCapota() {
-        if (!isMooving() && !isCapotaAberta()) {
+        if (!isStopped() && !isCapotaAberta()) {
             setCapotaAberta(true);
             return true;
         }
@@ -94,7 +100,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean fecharCapota() {
-        if (!isMooving() && isCapotaAberta()) {
+        if (!isStopped() && isCapotaAberta()) {
             setCapotaAberta(false);
             return true;
         }
@@ -130,7 +136,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
     }
 
     @Override
-    public boolean isMooving() {
+    public boolean isStopped() {
         return super.stopped;
     }
 
