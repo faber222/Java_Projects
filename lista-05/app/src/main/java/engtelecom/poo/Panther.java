@@ -19,7 +19,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
     }
 
     public int getTemperatura() {
-        return temperatura;
+        return this.temperatura;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean recolherRodas() {
-        if (!isRodasRecolhidas() && !isStopped()) {
+        if (!isRodasRecolhidas() && isStopped()) {
             esvaziarLastro();
             setRodasRecolhidas(true);
             return true;
@@ -60,7 +60,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean abrirRodas() {
-        if (isRodasRecolhidas() && !isStopped()) {
+        if (isRodasRecolhidas() && isStopped()) {
             setRodasRecolhidas(false);
             return true;
         }
@@ -69,7 +69,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean esvaziarLastro() {
-        if (!isStopped() && isLastroCheio()) {
+        if (isStopped() && isLastroCheio()) {
             setLastroCheio(false);
             return true;
         }
@@ -78,7 +78,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean ativarDesativarTracao() {
-        if (!isStopped()) {
+        if (isStopped() && !isRodasRecolhidas()) {
             if (isTracaoAtiva()) {
                 setTracaoAtiva(false);
             } else {
@@ -91,7 +91,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean abrirCapota() {
-        if (!isStopped() && !isCapotaAberta()) {
+        if (isStopped() && !isCapotaAberta()) {
             setCapotaAberta(true);
             return true;
         }
@@ -100,7 +100,7 @@ public class Panther extends VeiculoTracionado implements VeiculoAnfibio, Tracao
 
     @Override
     public boolean fecharCapota() {
-        if (!isStopped() && isCapotaAberta()) {
+        if (isStopped() && isCapotaAberta()) {
             setCapotaAberta(false);
             return true;
         }
