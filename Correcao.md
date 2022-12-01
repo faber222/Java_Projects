@@ -31,4 +31,9 @@
   - Lógica do método `VirtualMachine iterador(int number)` da classe `RealMachine` está equivocada. Desnecessário. Veja que a classe `ArrayList` possui método para obter um elemento por meio do índice.
   - Não deixou os comentários no teste de unidade, conforme solicitei em sala
 - Nota: 10
-  
+    
+## Lista 05
+
+- Tudo ok
+- Nota: 10
+
