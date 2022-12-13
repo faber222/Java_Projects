@@ -20,11 +20,21 @@ public class PrimeiraQuestão {
 
             conceitoFinal = mediaGeometrica + mediaPonderada;
 
-            if (conceitoFinal >= 6) {
-                System.out.println(conceitoFinal + " :APROVADO");
-            } else {
-                System.out.println(conceitoFinal + " :REPROVADO");
+            conceitoFinal *= 10;
+            int mediaArredondada = (int) conceitoFinal / 10;
+
+            int x = (int) (conceitoFinal % 10);
+            if (x >= 5) {
+                mediaArredondada++;
             }
+
+            if (mediaArredondada >= 6) {
+                System.out.println(mediaArredondada + " :APROVADO");
+            } else {
+                System.out.println(mediaArredondada + " :REPROVADO");
+            }
+        } else {
+            System.err.println("Necessário passar as notas: P1 P2 A1 A2 A3 A4 A5");
         }
     }
 }
